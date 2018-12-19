@@ -1,0 +1,11 @@
+Version: 1
+Type: io.taask.immediate
+Spec:
+  Meta:
+    Annotations:
+    - io.taask.runner.k8s.image:adder
+    TimeoutSeconds: 12
+  Kind: io.taask.k8s
+  Body:
+    first: 12
+    second: 18

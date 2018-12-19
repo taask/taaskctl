@@ -11,7 +11,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	taask "github.com/taask/client-golang"
-	"github.com/taask/taask-server/model"
 )
 
 type addition struct {
@@ -42,27 +41,21 @@ func chaosCmd(client *taask.Client) *cobra.Command {
 						Second: rand.Intn(100),
 					}
 
-					taskBodyJSON, err := json.Marshal(taskBody)
-					if err != nil {
-						log.LogError(errors.Wrap(err, "failed to Marshal"))
-						os.Exit(1)
+					taskBodyMap := make(map[string]interface{})
+					taskBodyMap["First"] = taskBody.First
+					taskBodyMap["Second"] = taskBody.Second
+
+					meta := taask.TaskMeta{
+						TimeoutSeconds: 15,
 					}
 
-					task := &model.Task{
-						Meta: &model.TaskMeta{
-							TimeoutSeconds: 15,
-						},
-						Kind: "io.taask.k8s",
-						Body: taskBodyJSON,
-					}
-
-					uuid, err := client.SendTask(task)
+					uuid, err := client.SendTask(taskBodyMap, "io.taask.k8s", meta)
 					if err != nil {
 						log.LogError(errors.Wrap(err, "failed to SendTask"))
 						os.Exit(1)
 					}
 
-					resultJSON, err := client.GetTaskResult(uuid)
+					resultJSON, err := client.StreamTaskResult(uuid)
 					if err != nil {
 						log.LogError(errors.Wrap(err, "failed to GetTaskResult"))
 						os.Exit(1)
