@@ -134,15 +134,15 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:a834fd1a58a718e2c0a12dd76cbb27a23527d462ba047566d4b0e72b31a422ff"
+  digest = "1:6d13bd5f1b30a6148410f605030e73ac525c21bc999b4331b484676d3296d4b2"
   name = "github.com/taask/client-golang"
   packages = ["."]
   pruneopts = "UT"
-  revision = "9c98fd934b8a133666668fc8fa768ccde1ce35de"
+  revision = "4ed68620f56e95acf7c34d13300fce2fb6143df4"
 
 [[projects]]
   branch = "master"
-  digest = "1:d73684f7d0b0f1cba587e535990bae49140eaf7a7fff27f95903208f96058c8b"
+  digest = "1:e6a487cbb8049cfd673e5ce0a005287bade4a7c9199609421b66a05233a31251"
   name = "github.com/taask/taask-server"
   packages = [
     "auth",
@@ -156,7 +156,7 @@
     "update",
   ]
   pruneopts = "UT"
-  revision = "918939966249762e1b42b24ac7fe6d86f6ffd2fb"
+  revision = "8055689b30c7afde994a023fef588459fe6f29cd"
 
 [[projects]]
   branch = "master"
@@ -253,6 +253,14 @@
   revision = "df014850f6dee74ba2fc94874043a9f3f75fbfd8"
   version = "v1.17.0"
 
+[[projects]]
+  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
@@ -261,7 +269,7 @@
     "github.com/pkg/errors",
     "github.com/spf13/cobra",
     "github.com/taask/client-golang",
-    "github.com/taask/taask-server/model",
+    "gopkg.in/yaml.v2",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
