@@ -17,7 +17,7 @@ taaskctl is implemented as a user interface for [client-golang](https://github.c
 ## Capabilities
 taaskctl is currently a test bed for Taask Core
 
-It allows running tasks from a YAML or JSON file that implements the Task spec using `taaskctl create`. That spec is described shown in exampletask.yaml.
+It allows running tasks from a YAML or JSON file that implements the Task spec using `taaskctl create`. That spec is shown in exampletask.yaml.
 
 It also allows for some basic load testing of a Taask cluster with the `taaskctl chaos` command.
 
