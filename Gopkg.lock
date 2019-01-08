@@ -134,19 +134,20 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:6d13bd5f1b30a6148410f605030e73ac525c21bc999b4331b484676d3296d4b2"
+  digest = "1:e041319e8025746ab3fb920fb16c09daa5dd124c53f0d37762a069807382e27b"
   name = "github.com/taask/client-golang"
   packages = ["."]
   pruneopts = "UT"
-  revision = "4ed68620f56e95acf7c34d13300fce2fb6143df4"
+  revision = "6a6b704e9a2abac8e9edeac487ccafbc0cff9840"
 
 [[projects]]
   branch = "master"
-  digest = "1:e6a487cbb8049cfd673e5ce0a005287bade4a7c9199609421b66a05233a31251"
+  digest = "1:cfed8552f0c4401f2930fb411859249cb01af72559f012b8cde041275865956d"
   name = "github.com/taask/taask-server"
   packages = [
     "auth",
     "brain",
+    "config",
     "metrics",
     "model",
     "model/validator",
@@ -156,7 +157,15 @@
     "update",
   ]
   pruneopts = "UT"
-  revision = "8055689b30c7afde994a023fef588459fe6f29cd"
+  revision = "e369aa9c4bd3d70a4fe68b9ed800eed43f83fe81"
+
+[[projects]]
+  branch = "master"
+  digest = "1:f92f6956e4059f6a3efc14924d2dd58ba90da25cc57fe07ae3779ef2f5e0c5f2"
+  name = "golang.org/x/crypto"
+  packages = ["pbkdf2"]
+  pruneopts = "UT"
+  revision = "ff983b9c42bc9fbf91556e191cc8efb585c16908"
 
 [[projects]]
   branch = "master"
@@ -269,6 +278,8 @@
     "github.com/pkg/errors",
     "github.com/spf13/cobra",
     "github.com/taask/client-golang",
+    "github.com/taask/taask-server/config",
+    "github.com/taask/taask-server/model",
     "gopkg.in/yaml.v2",
   ]
   solver-name = "gps-cdcl"

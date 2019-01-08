@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"path/filepath"
 
 	log "github.com/cohix/simplog"
 	"github.com/pkg/errors"
@@ -10,10 +11,9 @@ import (
 )
 
 func main() {
-	client, err := taask.NewClient("localhost", "30688")
+	client, err := createClient()
 	if err != nil {
-		log.LogError(errors.Wrap(err, "failed to NewClient"))
-		os.Exit(1)
+		log.LogWarn(errors.Wrap(err, "failed to createClient").Error())
 	}
 
 	cmd := command.Build(client)
@@ -22,4 +22,20 @@ func main() {
 		log.LogError(err)
 		os.Exit(1)
 	}
+}
+
+func createClient() (*taask.Client, error) {
+	authPath := filepath.Join(taask.DefaultConfigDir(), "local-auth.yaml")
+
+	localAuthConfig, err := taask.LocalAuthConfigFromFile(authPath)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to LocalAuthConfigFromFile")
+	}
+
+	client, err := taask.NewClient("localhost", "30688", localAuthConfig)
+	if err != nil {
+		log.LogWarn(errors.Wrap(err, "failed to NewClient").Error())
+	}
+
+	return client, nil
 }

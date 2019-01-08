@@ -9,6 +9,7 @@ import (
 func Build(client *taask.Client) *cobra.Command {
 	root := rootCmd()
 
+	root.AddCommand(initCmd())
 	root.AddCommand(chaosCmd(client))
 	root.AddCommand(createCmd(client))
 

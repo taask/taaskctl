@@ -30,6 +30,11 @@ func chaosCmd(client *taask.Client) *cobra.Command {
 		Short: "chaos runs load/correctness testing on a Taask installation.",
 		Long:  `chaos queues 1000 tasks of Kind io.taask.k8s, waits for them to complete, and prints stats about the run`,
 		Run: func(cmd *cobra.Command, args []string) {
+			if client == nil {
+				log.LogError(errors.New("unable to connect"))
+				return
+			}
+
 			start := time.Now()
 
 			resultChan := make(chan answer, 2000)
