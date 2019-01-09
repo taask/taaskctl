@@ -9,9 +9,15 @@ import (
 func Build(client *taask.Client) *cobra.Command {
 	root := rootCmd()
 
+	// Generate auth for deploying taask
 	root.AddCommand(initCmd())
-	root.AddCommand(chaosCmd(client))
+
+	// Task commands
 	root.AddCommand(createCmd(client))
+	root.AddCommand(getCmd(client))
+
+	// Load testing
+	root.AddCommand(chaosCmd(client))
 
 	return root
 }

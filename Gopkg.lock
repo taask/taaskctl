@@ -134,11 +134,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e041319e8025746ab3fb920fb16c09daa5dd124c53f0d37762a069807382e27b"
+  digest = "1:1db1434e0adf827bae17b95500d12ef603e3da8d242d9deacd447cfc09045ac5"
   name = "github.com/taask/client-golang"
   packages = ["."]
   pruneopts = "UT"
-  revision = "6a6b704e9a2abac8e9edeac487ccafbc0cff9840"
+  revision = "bc8a33509b1e85147ac992e37a7fcd37f6f8e707"
 
 [[projects]]
   branch = "master"

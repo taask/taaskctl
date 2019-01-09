@@ -8,7 +8,6 @@ import (
 
 	"github.com/cohix/simplcrypto"
 
-	log "github.com/cohix/simplog"
 	"github.com/pkg/errors"
 	"github.com/taask/taask-server/model"
 	"github.com/taask/taask-server/service"
@@ -99,7 +98,12 @@ func (c *Client) SendSpecTask(spec Task) (string, error) {
 
 // StreamTaskResult gets a task's result
 func (c *Client) StreamTaskResult(uuid string) ([]byte, error) {
-	stream, err := c.client.CheckTask(context.Background(), &service.CheckTaskRequest{UUID: uuid})
+	req := &service.CheckTaskRequest{
+		UUID:    uuid,
+		Session: c.localAuth.ActiveSession.Session,
+	}
+
+	stream, err := c.client.CheckTask(context.Background(), req)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to CheckTask")
 	}
@@ -109,8 +113,6 @@ func (c *Client) StreamTaskResult(uuid string) ([]byte, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to Recv")
 		}
-
-		log.LogInfo(fmt.Sprintf("task %s status %s", uuid, resp.Status))
 
 		if resp.Status == model.TaskStatusCompleted {
 			result, err := c.decryptResult(uuid, resp)
@@ -129,7 +131,12 @@ func (c *Client) StreamTaskResult(uuid string) ([]byte, error) {
 
 // GetTaskStatus gets a task's current status
 func (c *Client) GetTaskStatus(uuid string) (string, error) {
-	stream, err := c.client.CheckTask(context.Background(), &service.CheckTaskRequest{UUID: uuid})
+	req := &service.CheckTaskRequest{
+		UUID:    uuid,
+		Session: c.localAuth.ActiveSession.Session,
+	}
+
+	stream, err := c.client.CheckTask(context.Background(), req)
 	if err != nil {
 		return "", errors.Wrap(err, "failed to CheckTask")
 	}
@@ -138,8 +145,6 @@ func (c *Client) GetTaskStatus(uuid string) (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "failed to Recv")
 	}
-
-	log.LogInfo(fmt.Sprintf("task %s status %s", uuid, resp.Status))
 
 	return resp.Status, nil
 }
@@ -152,6 +157,9 @@ func (c *Client) decryptResult(taskUUID string, taskResponse *service.CheckTaskR
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to GroupKey")
 		}
+
+		// TODO: figure out how to remove this hack... it's not really a problem, but it's messy.
+		groupKey.KID = taskResponse.EncTaskKey.KID
 
 		taskKeyJSON, err := groupKey.Decrypt(taskResponse.EncTaskKey)
 		if err != nil {

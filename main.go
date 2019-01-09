@@ -13,7 +13,8 @@ import (
 func main() {
 	client, err := createClient()
 	if err != nil {
-		log.LogWarn(errors.Wrap(err, "failed to createClient").Error())
+		// TODO: figure out a better place to create the client
+		// log.LogWarn(errors.Wrap(err, "failed to createClient").Error())
 	}
 
 	cmd := command.Build(client)

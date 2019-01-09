@@ -45,7 +45,7 @@ If the task is complete, the result JSON is printed.`,
 				return
 			}
 
-			fmt.Println(status)
+			log.LogInfo(fmt.Sprintf("task %s status %s", uuid, status))
 		},
 	}
 
