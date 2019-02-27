@@ -11,16 +11,16 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-// ReadTaskFile reads a file and converts it to a task
-func ReadTaskFile(filepath string) (*taask.Task, error) {
+// ReadTaskSpecFile reads a file and converts it to a task
+func ReadTaskSpecFile(filepath string) (*taask.Task, error) {
 	raw, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to ReadFile")
 	}
 
-	spec := &taask.Spec{}
-	if err := yaml.Unmarshal(raw, spec); err != nil {
-		if jsonErr := json.Unmarshal(raw, spec); jsonErr != nil {
+	spec := taask.Spec{}
+	if err := yaml.Unmarshal(raw, &spec); err != nil {
+		if jsonErr := json.Unmarshal(raw, &spec); jsonErr != nil {
 			return nil, errors.Wrap(jsonErr, errors.Wrap(err, "failed to yaml and json Unmarshal").Error()) // stupid, but whatever
 		}
 	}
@@ -28,8 +28,8 @@ func ReadTaskFile(filepath string) (*taask.Task, error) {
 	return &spec.Spec, nil
 }
 
-// ReadTaskFromStdin returns a task piped in
-func ReadTaskFromStdin() (*taask.Task, error) {
+// ReadTaskSpecFromStdin returns a task piped in
+func ReadTaskSpecFromStdin() (*taask.Task, error) {
 	stat, err := os.Stdin.Stat()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to Stdin.Stat")

@@ -3,9 +3,9 @@ type: io.taask.immediate
 spec:
   meta:
     annotations:
-    - io.taask.runner.k8s.image:adder
+    - io.taask.container.image:taask/echo
     timeoutSeconds: 12
-  kind: io.taask.k8s
+  kind: io.taask.docker
   body:
     first: 12
     second: 18

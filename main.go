@@ -7,6 +7,7 @@ import (
 	log "github.com/cohix/simplog"
 	"github.com/pkg/errors"
 	"github.com/taask/client-golang"
+	"github.com/taask/client-golang/config"
 	"github.com/taask/taaskctl/command"
 )
 
@@ -26,9 +27,9 @@ func main() {
 }
 
 func createClient() (*taask.Client, error) {
-	authPath := filepath.Join(taask.DefaultConfigDir(), "local-auth.yaml")
+	authPath := filepath.Join(config.DefaultClientConfigDir(), "admin-auth.yaml") // TODO: allow switching between groups
 
-	localAuthConfig, err := taask.LocalAuthConfigFromFile(authPath)
+	localAuthConfig, err := config.LocalAuthConfigFromFile(authPath)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to LocalAuthConfigFromFile")
 	}
