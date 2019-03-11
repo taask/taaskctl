@@ -110,7 +110,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:cfed8552f0c4401f2930fb411859249cb01af72559f012b8cde041275865956d"
+  digest = "1:d0d32075891cf7a40eee93754aeb94b85af926f4b2514d2eba446ed16d9a461c"
   name = "github.com/taask/taask-server"
   packages = [
     "auth",
@@ -119,13 +119,15 @@
     "metrics",
     "model",
     "model/validator",
+    "partner",
     "schedule",
     "service",
     "storage",
+    "timeout",
     "update",
   ]
   pruneopts = "UT"
-  revision = "e369aa9c4bd3d70a4fe68b9ed800eed43f83fe81"
+  revision = "5239c1e321d3154eb02295dc8b13cf75864b7750"
 
 [[projects]]
   branch = "master"
@@ -243,13 +245,13 @@
   analyzer-version = 1
   input-imports = [
     "github.com/cohix/simplcrypto",
-    "github.com/cohix/simplog",
     "github.com/pkg/errors",
     "github.com/taask/taask-server/auth",
     "github.com/taask/taask-server/config",
     "github.com/taask/taask-server/model",
     "github.com/taask/taask-server/service",
     "google.golang.org/grpc",
+    "gopkg.in/yaml.v2",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

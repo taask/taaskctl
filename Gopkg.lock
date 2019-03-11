@@ -134,15 +134,18 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:1db1434e0adf827bae17b95500d12ef603e3da8d242d9deacd447cfc09045ac5"
+  digest = "1:f3155fc6a554ebb74a33507f45efb326dba9b122827d4d225912bf95e57738cd"
   name = "github.com/taask/client-golang"
-  packages = ["."]
+  packages = [
+    ".",
+    "config",
+  ]
   pruneopts = "UT"
-  revision = "bc8a33509b1e85147ac992e37a7fcd37f6f8e707"
+  revision = "bdd3352eacc78a38afb217475d63e34315f79e5d"
 
 [[projects]]
   branch = "master"
-  digest = "1:cfed8552f0c4401f2930fb411859249cb01af72559f012b8cde041275865956d"
+  digest = "1:d0d32075891cf7a40eee93754aeb94b85af926f4b2514d2eba446ed16d9a461c"
   name = "github.com/taask/taask-server"
   packages = [
     "auth",
@@ -151,13 +154,15 @@
     "metrics",
     "model",
     "model/validator",
+    "partner",
     "schedule",
     "service",
     "storage",
+    "timeout",
     "update",
   ]
   pruneopts = "UT"
-  revision = "e369aa9c4bd3d70a4fe68b9ed800eed43f83fe81"
+  revision = "5239c1e321d3154eb02295dc8b13cf75864b7750"
 
 [[projects]]
   branch = "master"
@@ -278,6 +283,7 @@
     "github.com/pkg/errors",
     "github.com/spf13/cobra",
     "github.com/taask/client-golang",
+    "github.com/taask/client-golang/config",
     "github.com/taask/taask-server/config",
     "github.com/taask/taask-server/model",
     "gopkg.in/yaml.v2",

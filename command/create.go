@@ -32,18 +32,20 @@ The task UUID is returned.`,
 			var task *taask.Task
 
 			if args[0] == "-" {
-				task, err = readwrite.ReadTaskFromStdin()
+				task, err = readwrite.ReadTaskSpecFromStdin()
 				if err != nil {
-					log.LogError(errors.Wrap(err, "failed to ReadTaskFromStdin"))
+					log.LogError(errors.Wrap(err, "failed to ReadTaskSpecFromStdin"))
 					os.Exit(1)
 				}
 			} else {
-				task, err = readwrite.ReadTaskFile(args[0])
+				task, err = readwrite.ReadTaskSpecFile(args[0])
 				if err != nil {
-					log.LogError(errors.Wrap(err, "failed to ReadTaskFile"))
+					log.LogError(errors.Wrap(err, "failed to ReadTaskSpecFile"))
 					os.Exit(1)
 				}
 			}
+
+			fmt.Println("spec annotations:", task.Meta.Annotations)
 
 			uuid, err := client.SendSpecTask(*task)
 			if err != nil {
