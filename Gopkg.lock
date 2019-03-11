@@ -134,18 +134,18 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b2de078f6eded69712945a2f99e44d8d3c95d200b208b70c7b4d3dbc53f82ae2"
+  digest = "1:f3155fc6a554ebb74a33507f45efb326dba9b122827d4d225912bf95e57738cd"
   name = "github.com/taask/client-golang"
   packages = [
     ".",
     "config",
   ]
   pruneopts = "UT"
-  revision = "9dbac2e9c40a706b994b5fe842195dbe247e325c"
+  revision = "bdd3352eacc78a38afb217475d63e34315f79e5d"
 
 [[projects]]
   branch = "master"
-  digest = "1:62f9ba06d1bcc88dcdb242edccc7b93177b7494dc2ddd242a7018439abec4af8"
+  digest = "1:d0d32075891cf7a40eee93754aeb94b85af926f4b2514d2eba446ed16d9a461c"
   name = "github.com/taask/taask-server"
   packages = [
     "auth",
@@ -158,10 +158,11 @@
     "schedule",
     "service",
     "storage",
+    "timeout",
     "update",
   ]
   pruneopts = "UT"
-  revision = "5efb85c6dc7cb064a26c914c32b0708c88c56b1f"
+  revision = "5239c1e321d3154eb02295dc8b13cf75864b7750"
 
 [[projects]]
   branch = "master"
